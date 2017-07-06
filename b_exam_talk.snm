@@ -3,6 +3,7 @@
 \beamer@slide {ub}{6}
 \beamer@slide {dec}{7}
 \beamer@slide {dpx}{7}
-\beamer@slide {optV}{15}
-\beamer@slide {decom}{22}
-\beamer@slide {upperB}{23}
+\beamer@slide {eq:dual}{8}
+\beamer@slide {LP-p}{8}
+\beamer@slide {eq:lp}{10}
+\beamer@slide {th:exist}{11}
