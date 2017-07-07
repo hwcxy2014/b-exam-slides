@@ -21,6 +21,9 @@
 \usepackage{bm}
 \usepackage{amsfonts}
 \usepackage{graphicx}
+\usepackage{booktabs} 
+\usepackage{biblatex}
+\usepackage{xcolor}
 \captionsetup[figure]{labelformat=empty}
 
 \newcommand{\E}{\mathbb{E}}
@@ -66,6 +69,7 @@
 \newcommand{\av}{\mathbf{a}}
 \newcommand{\bv}{\mathbf{b}}
 \newcommand{\Nv}{\mathbf{N}}
+\newcommand{\mv}{\mathbf{m}}
 %\newcommand{\cv}{\mathbf{c}}
 \newcommand{\cv}{c}
 %\newcommand{\dv}{\mathbf{d}}
@@ -286,7 +290,7 @@ Remark:
 \begin{itemize}
 \item Any policy $\pi^*$ constructed using $\rho^*$ is an optimal solution to $Q(\lambdav^*)$ and satisfies
 \begin{equation}
-\mathbb{E}^{\pi}[|A_t|]=\frac{m_t}{K}
+\mathbb{E}^{\pi}[|A_t|]=\frac{m_t}{K}.
 \end{equation} 
 \item Solving for $\rho^*$ requires solving an LP with $|\substates||\subactions|T$ variables and at most $T|\substates|$ constraints.
 \end{itemize}
@@ -323,11 +327,123 @@ Construct $\pi^{\lambdav}$ by
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Pre-computations: 3. Indices of states}
+Use $\mathbf{v}[c,t]$ to denote $\mathbf{v}+(c-v_t)*\mathbf{e}_t$.
+
+\vspace{0.5cm}
+The index of a state $\substate\in\substates$ at time $t$ is defined by
+\begin{equation}
+\beta_t(s) = sup\{\beta: \pi^{\lambdav^*[\beta,t]}(s,1,t)=1\}
+\end{equation}
+
+\vspace{0.5cm}
+We compute $\betav = \{\beta_t(s):s\in\substates,1\leq t\leq T\}$
+
+
+\vspace{0.5cm}
+Remark: Computing $\pi^{\lambdav}$ takes $O(|\substates||\subactions|T)$ time and space. Computational complexity for $\betav$ is $O(|\substates|^2|\subactions|T^2)$
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Algorithm of Index policy $\hat{\allp}$}
+\begin{algorithm}[H]
+\footnotesize
+\begin{algorithmic}
+\STATE Pre-compute: $\lambdav^*$; $\betav$; $\rho$. (Refer to earlier discussions for computation details) 
+\FOR{$t = 1,...,T$}
+    \STATE Let $\beta_{t,[i]}$ be the $i^{th}$ largest element in the list $\beta_t(\allstater_{t,1}),...,\beta_t(\allstater_{t,K})$, so $\beta_{t,[1]}\geq\ldots\geq \beta_{t,[K]}$. 
+    \STATE Let $\bar{\beta}_t = \beta_{t,[m_t]}$
+    \STATE Let $I_t=\{\substate : \beta_t(s)=\bar{\beta}_t\ \text{and}\ s=\allstater_{t,x}\ \text{for some x}\}$
+    \STATE Let $N_t(s) = |\{x:\allstater_{t,x}=s\}|$, for all $\substate$.
+    \STATE For $\substate\in I_t$, let 
+    $$
+    q(s) = 
+    \begin{cases}
+	\frac{\rho(s,1,t)}{\sum_{s'\in I_t}\rho(s',1,t)}, \; \text{if } \sum_{s'\in I_t}\rho(s',1,t)>0\\
+	\frac{N_t(s)}{\sum_{s'\in I_t} N_t(s')}, \; \text{otherwise}
+    \end{cases}
+    $$
+    Let $b = \mathrm{Rounding}(m_t-\sum_{s':\beta_t(s')>\bar{\beta}_t}N_t(s'),
+    (q(s):s\in I_t),(N_t(s):s\in I_t))$
+    \FOR{all $\substate$}
+    \STATE If $\beta_t(s)>\bar{\beta}_t$, set all $N_t(s)$ sub-processes in $s$ active.
+    \STATE If $\beta_t(s)= \bar{\beta}_t$, set $b(s)$ sub-processes in $s$ active.
+    \STATE If $\beta_t(s)< \bar{\beta}_t$, set 0 sub-processes in $s$ active.
+    \ENDFOR
+  \ENDFOR
+\end{algorithmic}
+\end{algorithm}
 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Asymptotic optimality of the index policy $\hat{\allp}$}
+Notations:
+\begin{itemize}
+\item For $\alphav\in \mathbb{R}^T$, and $c\in \mathbb{R}$, define $\lfloor\alphav K\rfloor=(\lfloor\alpha_1 K\rfloor,...,\lfloor\alpha_T,K\rfloor)$.
+\item Let $Z(\allp, \mv, K)$ denote the expected reward of the original MDP \eqref{prime}, with constraint $\mv=(m_1,...,m_T)$ and K sub-processes.
+\item Let $\allpset_{\mv,K}$ denote the set of all feasible Markov policies of the original MDP \eqref{prime}, with constraint $\mv=(m_1,...,m_T)$ and K sub-processes.
+\end{itemize}
+\begin{theorem}[1]
+For any $\alphav \in [0,1]^T$,
+\begin{equation}
+\lim_{K\rightarrow\infty}\frac{1}{K}\left(\max_{\allp\in\allpset_{\lfloor \alphav K\rfloor,K}}Z(\allp,\lfloor \alphav K\rfloor,K)-Z(\hat{\allp},\lfloor \alphav K\rfloor,K)\right) = 0.
+\end{equation}
+\end{theorem}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Asymptotic optimality of the index policy $\hat{\allp}$}
+Notations:
+\begin{itemize}
+\item Define $N_t(s)$ as the number of sub-processes in state $s$ at time $t$, and $M_t(s)$ the number of sub-processes taking active actions in state $s$ at time $t$, both under $\hat{\allp}$.
+\item Let $\pi^{*}$ be a policy constructed using $\rho^*$.
+\item Let $P_t(s)$ denote the probability of being in state $s$ at time $t$ under $\pi^*$.
+\end{itemize}
+\begin{theorem}[2]\label{th:conv}
+For every $s\in\substates$ and $1\leq t\leq T$,
+\begin{equation}\label{conv1}
+\lim_{K\rightarrow\infty}\frac{N_t(s)}{K} = P_t(s), \hspace{2mm} P^{\hat{\allp}}-a.s.,
+\end{equation}
+and
+\begin{equation}\label{conv2}
+\lim_{K\rightarrow\infty}\frac{M_t(s)}{K} = P_t(s)*\subp^*(s,1,t), \hspace{2mm} P^{\hat{\allp}}-a.s., 
+\end{equation}
+\end{theorem}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Proof of Theorem 1}
+That $\hat{\allp}$ being feasible implies $$Z(\hat{\allp},\lfloor \alpha K\rfloor,K) \leq \max_{\allp\in\allpset_{\lfloor \alpha K\rfloor,K}}Z(\allp,\lfloor \alpha K\rfloor,K)$$.  Thus,
+\begin{equation*}
+\lim_{K\rightarrow\infty}\frac{1}{K}Z(\hat{\allp},\lfloor \alpha K\rfloor,K) \leq  \lim_{K\rightarrow\infty}\frac{1}{K}\sup_{\allp\in\allpset_{\lfloor \alpha K\rfloor,K}}Z(\allp,\lfloor \alpha K\rfloor,K).
+\end{equation*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Proof of Theorem 1 Cont'}
+On the other hand,
+\footnotesize
+\begin{align*}
+\lim_{K\rightarrow\infty}\frac{1}{K}Z(\hat{\allp},\lfloor \alpha K\rfloor,K) 
+=&\lim_{K\rightarrow\infty}\frac{1}{K}\Eb^{\hat{\allp}}\left[\sum_{t=1}^{T}\sum_{s\in\substates}r_t(s,1) M_{t}(s)+r_t(s,0) (N_{t}(s)-M_{t}(s))\right]\\
+=&\sum_{t=1}^{T}\sum_{s\in \substates}\left[r_t(s,1) \rho(s,1,t)+r_t(s,0) \rho(s,0,t) \right]\\
+&\;\;\;\;\;-\mathbb{E}^{\subp^*}\left[\sum_{t}\lambda^*_t \left(A_t-\alpha_t\right)\right]\\
+=& Q(\lambdav^*)+\alpha \sum\lambda^*_t\\
+=& \lim_{K\rightarrow\infty}\frac{1}{K}(KQ(\lambdav^*)+\lfloor \alpha K \rfloor\sum\lambda^*_t)\\
+=& \lim_{K\rightarrow\infty}\frac{1}{K} P(\lambdav^*,\lfloor \alpha K \rfloor, K)\\
+\geq& \lim_{K\rightarrow\infty}\frac{1}{K}\sup_{\allp\in\allpset_{\lfloor \alpha K\rfloor,K}}Z(\allp,\lfloor \alpha K\rfloor,K).
+\end{align*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 
 
