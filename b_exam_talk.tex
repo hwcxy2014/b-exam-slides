@@ -1,5 +1,4 @@
 \documentclass{beamer}
-\usepackage{graphicx}
 \usepackage{beamerthemesplit}
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{color}
@@ -21,9 +20,12 @@
 \usepackage{bm}
 \usepackage{amsfonts}
 \usepackage{graphicx}
+\usepackage{subfigure}
 \usepackage{booktabs} 
 \usepackage{biblatex}
 \usepackage{xcolor}
+%\usepackage{subfig}
+\usepackage{caption}
 \captionsetup[figure]{labelformat=empty}
 
 \newcommand{\E}{\mathbb{E}}
@@ -414,6 +416,26 @@ and
 \lim_{K\rightarrow\infty}\frac{M_t(s)}{K} = P_t(s)*\subp^*(s,1,t), \hspace{2mm} P^{\hat{\allp}}-a.s., 
 \end{equation}
 \end{theorem}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Theorem 2 is proven by induction over time}
+An numerical illustration of Theorem 2 using an instance of MAB
+\vspace{-0.5cm}
+\begin{figure}[tb]
+\captionsetup[subfigure]{labelformat=empty}
+\centering
+\only<1>{\subfigure{\includegraphics[width=45mm]{heat_map_index_s.pdf}}}
+\only<1>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_s.pdf}}}
+\only<1>{\subfigure{\includegraphics[width=45mm]{heat_map_index_sa.pdf}}}
+\only<1>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_sa.pdf}}}
+\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_index_s_lined.pdf}}}
+\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_s_lined.pdf}}}
+\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_index_sa_lined.pdf}}}
+\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_sa_lined.pdf}}}
+\end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
