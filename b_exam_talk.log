@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  11 JUL 2017 14:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  13 JUL 2017 16:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1435,12 +1435,12 @@ Package biblatex Info: Automatic encoding selection.
 \openout5 = `b_exam_talk.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'b_exam_talk.bbl' not found.
+Package biblatex Info: ... file 'b_exam_talk.bbl' found.
 
-No file b_exam_talk.bbl.
+(./b_exam_talk.bbl)
 Package biblatex Info: Reference section=0 on input line 117.
 Package biblatex Info: Reference segment=0 on input line 117.
-(./b_exam_talk.nav)
+ (./b_exam_talk.nav)
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
 (hyperref)                setting the option has no effect on input line 122.
@@ -1461,23 +1461,36 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
 [1
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for U+msa on input line 140.
+<ads.png, id=54, 1175.39125pt x 632.3625pt>
+File: ads.png Graphic file (type png)
+ <use ads.png>
+Package pdftex.def Info: ads.png used on input line 142.
+(pdftex.def)             Requested size: 169.01036pt x 90.92311pt.
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 140.
+<project_management.jpg, id=56, 5018.75pt x 3639.5975pt>
+File: project_management.jpg Graphic file (type jpg)
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
+<use project_management.jpg>
+Package pdftex.def Info: project_management.jpg used on input line 142.
+(pdftex.def)             Requested size: 122.91406pt x 89.13481pt.
+
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [2
 
-]
+ <./ads.png> <./project_management.jpg>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 157.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 157.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1527,15 +1540,6 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
 [9
 
 ]
-LaTeX Font Info:    Try loading font information for U+bbm on input line 270.
- (/usr/local/texlive/2013/texmf-dist/tex/latex/bbm-macros/ubbm.fd
-File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
-)
-Overfull \hbox (6.66048pt too wide) detected at line 270
-[][][][] []
- []
-
-
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1543,6 +1547,19 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
 [10
 
 ]
+LaTeX Font Info:    Try loading font information for U+bbm on input line 295.
+ (/usr/local/texlive/2013/texmf-dist/tex/latex/bbm-macros/ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+)
+Overfull \hbox (6.66048pt too wide) detected at line 295
+[][][][] []
+ []
+
+
+Overfull \vbox (3.16895pt too high) detected at line 295
+ []
+
+
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1557,7 +1574,14 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
 [12
 
 ]
-Overfull \hbox (34.80681pt too wide) detected at line 326
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[13
+
+]
+Overfull \hbox (34.80681pt too wide) detected at line 358
 \OT1/cmss/m/it/10.95 V[]\OT1/cmss/m/n/10.95 (\OT1/cmss/m/it/10.95 s\OML/cmm/m/i
 t/10.95 ; \OT1/cmss/m/it/10.95 t\OT1/cmss/m/n/10.95 ) = []
  []
@@ -1567,20 +1591,9 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
 
-[13
-
-]
-Overfull \hbox (49.38849pt too wide) has occurred while \output is active
- [][][][]  
- []
-
 [14
 
 ]
-Overfull \vbox (18.65547pt too high) detected at line 379
- []
-
-
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1588,6 +1601,10 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
 [15
 
 ]
+Overfull \vbox (10.11957pt too high) detected at line 412
+ []
+
+
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1601,39 +1618,57 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
 
 [17
 
-] <heat_map_index_s.pdf, id=536, 578.16pt x 433.62pt>
-File: heat_map_index_s.pdf Graphic file (type pdf)
-
-<use heat_map_index_s.pdf>
-Package pdftex.def Info: heat_map_index_s.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
-
-<heat_map_pistar_s.pdf, id=537, 578.16pt x 433.62pt>
-File: heat_map_pistar_s.pdf Graphic file (type pdf)
-
-<use heat_map_pistar_s.pdf>
-Package pdftex.def Info: heat_map_pistar_s.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
-
-<heat_map_index_sa.pdf, id=538, 698.30888pt x 491.436pt>
-File: heat_map_index_sa.pdf Graphic file (type pdf)
-
-<use heat_map_index_sa.pdf>
-Package pdftex.def Info: heat_map_index_sa.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 90.10437pt.
-
-<heat_map_pistar_sa.pdf, id=539, 578.16pt x 433.62pt>
-File: heat_map_pistar_sa.pdf Graphic file (type pdf)
-
-<use heat_map_pistar_sa.pdf>
-Package pdftex.def Info: heat_map_pistar_sa.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
-
+]
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [18
+
+]
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[19
+
+] <heat_map_index_s.pdf, id=590, 578.16pt x 433.62pt>
+File: heat_map_index_s.pdf Graphic file (type pdf)
+
+<use heat_map_index_s.pdf>
+Package pdftex.def Info: heat_map_index_s.pdf used on input line 479.
+(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
+
+<heat_map_pistar_s.pdf, id=591, 578.16pt x 433.62pt>
+File: heat_map_pistar_s.pdf Graphic file (type pdf)
+
+<use heat_map_pistar_s.pdf>
+Package pdftex.def Info: heat_map_pistar_s.pdf used on input line 479.
+(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
+
+<heat_map_index_sa.pdf, id=592, 698.30888pt x 491.436pt>
+File: heat_map_index_sa.pdf Graphic file (type pdf)
+
+<use heat_map_index_sa.pdf>
+Package pdftex.def Info: heat_map_index_sa.pdf used on input line 479.
+(pdftex.def)             Requested size: 128.0374pt x 90.10437pt.
+
+<heat_map_pistar_sa.pdf, id=593, 578.16pt x 433.62pt>
+File: heat_map_pistar_sa.pdf Graphic file (type pdf)
+
+<use heat_map_pistar_sa.pdf>
+Package pdftex.def Info: heat_map_pistar_sa.pdf used on input line 479.
+(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
+
+Overfull \vbox (5.47426pt too high) detected at line 479
+ []
+
+
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[20
 
  <./heat_map_index_s.pdf> <./heat_map_pistar_s.pdf
 
@@ -1647,61 +1682,22 @@ ion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /usr/texbin/pdflatex (file ./heat_map_pistar_sa.pdf): PDF inclu
 sion: multiple pdfs with page group included in a single page
->] <heat_map_index_s_lined.pdf, id=2452, 578.16pt x 433.62pt>
-File: heat_map_index_s_lined.pdf Graphic file (type pdf)
-
-<use heat_map_index_s_lined.pdf>
-Package pdftex.def Info: heat_map_index_s_lined.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
-
-<heat_map_pistar_s_lined.pdf, id=2453, 578.16pt x 433.62pt>
-File: heat_map_pistar_s_lined.pdf Graphic file (type pdf)
-
-<use heat_map_pistar_s_lined.pdf>
-Package pdftex.def Info: heat_map_pistar_s_lined.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
-
-<heat_map_index_sa_lined.pdf, id=2454, 698.30888pt x 491.436pt>
-File: heat_map_index_sa_lined.pdf Graphic file (type pdf)
-
-<use heat_map_index_sa_lined.pdf>
-Package pdftex.def Info: heat_map_index_sa_lined.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 90.10437pt.
-
-<heat_map_pistar_sa_lined.pdf, id=2455, 578.16pt x 433.62pt>
-File: heat_map_pistar_sa_lined.pdf Graphic file (type pdf)
-
-<use heat_map_pistar_sa_lined.pdf>
-Package pdftex.def Info: heat_map_pistar_sa_lined.pdf used on input line 439.
-(pdftex.def)             Requested size: 128.0374pt x 96.02525pt.
-
-Overfull \hbox (49.38849pt too wide) has occurred while \output is active
- [][][][]  
- []
-
-[19
-
- <./heat_map_index_s_lined.pdf> <./heat_map_pistar_s_lined.pdf
-
-pdfTeX warning: /usr/texbin/pdflatex (file ./heat_map_pistar_s_lined.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
-> <./heat_map_index_sa_lined.pdf
-
-pdfTeX warning: /usr/texbin/pdflatex (file ./heat_map_index_sa_lined.pdf): PDF 
-inclusion: multiple pdfs with page group included in a single page
-> <./heat_map_pistar_sa_lined.pdf
-
-pdfTeX warning: /usr/texbin/pdflatex (file ./heat_map_pistar_sa_lined.pdf): PDF
- inclusion: multiple pdfs with page group included in a single page
 >]
 Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
 
-[20
+[21
 
 ]
-Overfull \hbox (26.2911pt too wide) in paragraph at lines 467--467
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[22
+
+]
+Overfull \hbox (26.2911pt too wide) in paragraph at lines 527--527
 []  
  []
 
@@ -1710,7 +1706,96 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
  [][][][]  
  []
 
-[21
+[23
+
+] <plot_mab.pdf, id=2586, 698.30888pt x 620.6186pt>
+File: plot_mab.pdf Graphic file (type pdf)
+ <use plot_mab.pdf>
+Package pdftex.def Info: plot_mab.pdf used on input line 539.
+(pdftex.def)             Requested size: 199.16928pt x 177.01071pt.
+
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[24
+
+ <./plot_mab.pdf>] <plot_hiring1.pdf, id=2661, 765.15862pt x 613.3916pt>
+File: plot_hiring1.pdf Graphic file (type pdf)
+
+<use plot_hiring1.pdf>
+Package pdftex.def Info: plot_hiring1.pdf used on input line 551.
+(pdftex.def)             Requested size: 199.16928pt x 159.65588pt.
+
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[25
+
+ <./plot_hiring1.pdf>]
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[26
+
+] <simPlots_0707_cropped.pdf, id=2774, 593.3367pt x 523.9575pt>
+File: simPlots_0707_cropped.pdf Graphic file (type pdf)
+
+<use simPlots_0707_cropped.pdf>
+Package pdftex.def Info: simPlots_0707_cropped.pdf used on input line 588.
+(pdftex.def)             Requested size: 170.71652pt x 150.75253pt.
+
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[27
+
+ <./simPlots_0707_cropped.pdf>]
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[28
+
+] <plot_up_sim.pdf, id=2830, 556.32703pt x 431.46599pt>
+File: plot_up_sim.pdf Graphic file (type pdf)
+
+<use plot_up_sim.pdf>
+Package pdftex.def Info: plot_up_sim.pdf used on input line 614.
+(pdftex.def)             Requested size: 199.16928pt x 154.46516pt.
+
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[29
+
+ <./plot_up_sim.pdf>]
+
+LaTeX Warning: Citation 'Snow2008' on page 30 undefined on input line 627.
+
+<plot_real_sim_reward.pdf, id=2893, 870.85347pt x 571.83638pt>
+File: plot_real_sim_reward.pdf Graphic file (type pdf)
+
+<use plot_real_sim_reward.pdf>
+Package pdftex.def Info: plot_real_sim_reward.pdf used on input line 627.
+(pdftex.def)             Requested size: 213.39566pt x 140.12296pt.
+
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[30
+
+ <./plot_real_sim_reward.pdf>]
+Overfull \hbox (49.38849pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[31
 
 ]
 \tf@nav=\write7
@@ -1724,14 +1809,14 @@ Overfull \hbox (49.38849pt too wide) has occurred while \output is active
 
 
 
-Package caption Warning: Unused \captionsetup[subfigure] on input line 439.
+Package caption Warning: Unused \captionsetup[subfigure] on input line 479.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 469.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 469.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 644.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 644.
 (./b_exam_talk.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 469.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 469.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 644.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 644.
 Package rerunfilecheck Info: File `b_exam_talk.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1739,16 +1824,24 @@ Package rerunfilecheck Info: File `b_exam_talk.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                b_exam_talk
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'b_exam_talk.run.xml'.
 \openout1 = `b_exam_talk.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 469.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 644.
  ) 
 Here is how much of TeX's memory you used:
- 27351 strings out of 493315
- 530210 string characters out of 6137904
- 968584 words of memory out of 5000000
- 30099 multiletter control sequences out of 15000+600000
+ 27576 strings out of 493315
+ 534245 string characters out of 6137904
+ 967619 words of memory out of 5000000
+ 30296 multiletter control sequences out of 15000+600000
  29107 words of font info for 108 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  49i,16n,57p,936b,737s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1756,35 +1849,39 @@ Here is how much of TeX's memory you used:
 m10.600pk></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 ex10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cmextr
 a/cmex7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cme
-xtra/cmex9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmmi12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmmi5.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
-.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.p
-fb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><
-/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></
-usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></us
-r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr
-/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr
-/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr
-/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/
-local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/l
-ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/lo
-cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/loca
-l/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
-ive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texliv
-e/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on b_exam_talk.pdf (21 pages, 851763 bytes).
+xtra/cmex8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/
+cmextra/cmex9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi5.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
+pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pf
+b></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></u
+sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr
+/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/l
+ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/
+local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/l
+ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/lo
+cal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
+al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local
+/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/t
+exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/tex
+live/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive
+/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/tex
+live/2013/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on b_exam_talk.pdf (31 pages, 4390045 bytes).
 PDF statistics:
- 2916 PDF objects out of 2984 (max. 8388607)
- 736 compressed objects within 8 object streams
- 55 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3117 PDF objects out of 3580 (max. 8388607)
+ 1017 compressed objects within 11 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 

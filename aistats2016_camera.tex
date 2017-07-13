@@ -1,0 +1,127 @@
+\documentclass[twoside,10pt]{article}
+\usepackage[accepted]{aistats2016}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\pagenumbering{arabic}
+
+\usepackage[T1]{fontenc}
+%\usepackage{lmodern}
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[left = 1in, right = 0.75in, top = 1in, bottom = 0.75in]{geometry}
+
+%\usepackage{bbm}
+\usepackage{color}
+\usepackage{enumerate}
+%\usepackage[toc,page]{appendix}
+\newtheorem{theorem}{Theorem}
+\renewcommand{\thetheorem}{ \arabic{theorem}}
+\newtheorem{corollary}[theorem]{Corollary}
+\renewcommand{\thecorollary}{\arabic{corollary}}
+\newtheorem{definition}{Definition}
+\renewcommand{\thedefinition}{\arabic{definition}}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\todo}[1]{{\color{red} #1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\KG}{\mathrm{KG}}
+\newcommand{\KGs}{\mathrm{KG}}
+\newcommand{\KGp}{\mathrm{KG}^2}
+\newcommand{\nuKGp}{\nu^{KG2}}
+\newcommand{\zap}[1]{}
+\newcommand{\twovec}[2]{\left( \begin{array}{c}#1\\ #2\end{array} \right)}
+\newcommand{\twomatrix}[4]{\left(\begin{array}{cc}#1&#2\\#3&#4\end{array}\right)}
+\newcommand{\Prob}{\mathbb{P}} % probability measure
+\newcommand{\e}[1]{\left\{#1\right\}}
+\newcommand{\s}[1]{\left[ #1 \right]}
+\newcommand{\length}{\mathrm{length}}
+\newcommand{\Ytilde}{\widetilde{Y}}
+\newcommand{\Fn}{\mathcal{F}_n}
+\newcommand{\Ncal}{\mathcal{N}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\lsb}{\left[}
+\newcommand{\rsb}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\sigmatilde}{\tilde{\sigma}}
+\newcommand{\rp}{\right)}
+% \newcommand{\xvec}{{\bf x}}
+% \newcommand{\Yvec}{{\bf Y}}
+\newcommand{\xvec}{x}
+\newcommand{\Yvec}{Y}
+
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\secref}[1]{\S\ref{#1}}     % NB: Still sshould write Section~\ref{ABC} at start of a sentence
+\newcommand{\secrefb}[2]{\S\ref{#1}-\S\ref{#2}}
+
+\newcommand{\omg}{\omega}
+\newcommand{\sv}{\mathbf{s}}
+\newcommand{\Sv}{\mathbf{S}}
+\newcommand{\av}{\mathbf{a}}
+\newcommand{\bv}{\mathbf{b}}
+%\newcommand{\cv}{\mathbf{c}}
+\newcommand{\cv}{c}
+%\newcommand{\dv}{\mathbf{d}}
+\newcommand{\dv}{d}
+\newcommand{\muv}{\pmb{\mu}}
+\newcommand{\betav}{\pmb{\beta}}
+%\newcommand{\thetav}{\pmb{\theta}}
+\newcommand{\thetav}{\theta}
+\newcommand{\lambdav}{\pmb{\lambda}}
+\newcommand{\alphav}{\pmb{\alpha}}
+\newcommand{\zerov}{\pmb{0}}
+%\newcommand{\thetav}{\theta}
+\newcommand{\NoGa}{\mathcal{NG}}
+\newcommand{\zv}{\mathbf{z}}
+\newcommand{\wv}{\mathbf{w}}
+\newcommand{\ev}{\mathbf{e}}
+\newcommand{\piv}{\pmb{\pi}}
+%\doublespacing
+
+% use Times
+\usepackage{times}
+% For figures
+\usepackage{graphicx} % more modern
+%\usepackage{epsfig} % less modern
+\usepackage{subfigure} 
+
+% For citations
+\usepackage{natbib}
+
+% For algorithms
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+
+\begin{document}
+\twocolumn[
+
+\aistatstitle{Bayes-Optimal Effort Allocation in Crowdsourcing: Bounds and Index Policies}
+
+\aistatsauthor{ Weici Hu \\ wh343@cornell.edu \And Peter I. Frazier \\ pf98@cornell.edu}
+
+\aistatsaddress{School of Operations Research \& Information Engineering\\  Cornell University \\ 206 Rhodes Hall\\Ithaca, NY 14853, USA } ]
+
+\begin{abstract}
+\input{abstract.tex}
+\end{abstract}
+
+\input{01_intro.tex}
+\input{02_related_work.tex}
+\input{03_model.tex}
+\input{04_bound.tex}
+\input{05_index.tex}
+\input{06_numerical.tex}
+\input{07_conclusion.tex}
+\bibliographystyle{icml2015}
+\bibliography{Reference}
+
+
+\end{document}

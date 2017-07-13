@@ -126,6 +126,23 @@ Cornell ORIE}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{RMAB problems have many applications in industry}
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{0.55\textwidth}
+    \includegraphics[width=\textwidth]{ads.png}
+    \caption{Personalized advertisement on Amazon}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{project_management.jpg}
+    \caption{Project management}
+  \end{minipage}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Problem Setup}
 We consider an MDP $(\allstates,\allactions,\allpr^{\cdot},\allr)$ that consists of K identical sub-processes $(\substates,\subactions,\subpr^{\cdot},\subr)$, specifically,
@@ -175,6 +192,14 @@ The complexity grow exponentially with the number of sub-processes $K$, and beco
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Past attempts}
+\begin{itemize}
+\item Gittins: Proposes Gittin's index policy that is optimal for infinite horizon MAB with single pull per period.
+\item Whittle: Proposes Whittle's policy that is derived from a Lagrangian relaxation of the RMAB, but only for the infinite time horizon case.\\
+conjectures that Whittle's index policy is asymtotically optimal when both the number of arms and the constraints go to infinity, but this is only true under restricted condition. (Weiss and Weber)
+\item Adelman: provides conditions when the gap between the Lagrangian relaxation and the optimal value is bounded by a constant, but does not offer a feasible policy.
+\end{itemize}
+
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -233,7 +258,7 @@ which can be solved by the following linear program (LP):
 \end{aligned}
 \end{equation}
 \normalsize
-where $V^*$ corresponds to the value function of problem \eqref{dpx}.
+$V^*(s_1,1)=Q(\lambdav^*)$.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -251,7 +276,7 @@ Remarks:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Pre-computations: 2. Occupation Measure $\rho^*$ of an optimal policy of $Q(\lambdav^*)$}
-\textbf{Occupation measure} of a policy $\pi$: the fraction of the time a process spent in each state-action pair at a time step under $\pi$. 
+\textbf{Occupation measure} of a policy $\pi$: the fraction of the time a process spent in each state-action pair at a time step under $\pi$. $\rho(s,a,t) = \pi(s,a,t)P(S_t=s)$.
 
 \vspace{0.5cm}
 To compute $\rho^*$, we solve the following linear program (LP):
@@ -274,13 +299,20 @@ To compute $\rho^*$, we solve the following linear program (LP):
 \begin{frame}
 \frametitle{Pre-computations: 2. Occupation Measure $\rho^*$ of an optimal policy of $Q(\lambdav^*)$}
 \begin{Lemma}\label{th:exist}
-Let $\rho^*$ be an optimal solution to \eqref{eq:lp},
-then $\rho^*$ is the occupation measure of an optimal policy to $Q(\lambdav^*)$.
+If we construct a policy $\pi^*$ by
+\begin{equation}\label{df:rho}
+\subp^{*}(s,a,t)=
+\begin{cases}
+\frac{\rho^*(s,a,t)}{\sum_{a\in\subactions}\rho^*(s,a,t)},\; \; \text{if }\sum_{a\in\subactions}\rho^*(s,a,t)>0\\
+\text{arbitrary}, \;\;\;\text{if }\sum_{a\in\subactions}\rho^*(s,a,t)=0 
+\end{cases}
+\end{equation}for all $s\in \substates,\subaction\in\subactions,1\leq t\leq T$, then $\pi^*$ is an optimal policy for $Q(\lambdav^*)$.
 \end{Lemma}
-\vspace{0.5cm}
-A quick justification of Lemma \ref{th:exist}: 
-
-\eqref{eq:lp} is the dual of \eqref{LP-p} attains $Q(\lambdav^*)$. By dynamic program theory ??????(Don't know what theory), solutions to \eqref{eq:lp} form the occupation measure of optimal solutions of $Q(\lambdav^*)$.
+Quick justification: 
+\begin{itemize}
+\item $\pi^*$ meets the definition of a policy.
+\item $\mathbb{E}^{\pi^*}[\sum_{t=1}^Tr_t(S_t,A_t)] = Q(\lambdav^*)+\sum_{t=1}^{T}\lambda_t^*\frac{m_t}{K}$ by strong duality. Hence $\mathbb{E}^{\pi^*}[\sum_{t=1}^Tr_t(S_t,A_t)-\lambdav^*A_t] = Q(\lambdav^*)$.
+\end{itemize}
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -292,7 +324,7 @@ Remark:
 \begin{itemize}
 \item Any policy $\pi^*$ constructed using $\rho^*$ is an optimal solution to $Q(\lambdav^*)$ and satisfies
 \begin{equation}
-\mathbb{E}^{\pi}[|A_t|]=\frac{m_t}{K}.
+\mathbb{E}^{\pi^*}[A_t]=\frac{m_t}{K}.
 \end{equation} 
 \item Solving for $\rho^*$ requires solving an LP with $|\substates||\subactions|T$ variables and at most $T|\substates|$ constraints.
 \end{itemize}
@@ -348,6 +380,7 @@ Remark: Computing $\pi^{\lambdav}$ takes $O(|\substates||\subactions|T)$ time an
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}{Algorithm of Index policy $\hat{\allp}$}
+\vspace{-0.3cm}
 \begin{algorithm}[H]
 \footnotesize
 \begin{algorithmic}
@@ -361,7 +394,7 @@ Remark: Computing $\pi^{\lambdav}$ takes $O(|\substates||\subactions|T)$ time an
     $$
     q(s) = 
     \begin{cases}
-	\frac{\rho(s,1,t)}{\sum_{s'\in I_t}\rho(s',1,t)}, \; \text{if } \sum_{s'\in I_t}\rho(s',1,t)>0\\
+	\frac{\rho^*(s,1,t)}{\sum_{s'\in I_t}\rho^*(s',1,t)}, \; \text{if } \sum_{s'\in I_t}\rho^*(s',1,t)>0\\
 	\frac{N_t(s)}{\sum_{s'\in I_t} N_t(s')}, \; \text{otherwise}
     \end{cases}
     $$
@@ -381,10 +414,21 @@ Remark: Computing $\pi^{\lambdav}$ takes $O(|\substates||\subactions|T)$ time an
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+\frametitle{Algorithm of Index Policy $\hat{\pi}$}
+Remark:
+\begin{itemize}
+\item \textit{Rounding} takes care of all the corner cases.
+\item Computational complexity of $\hat{\pi}$ (exluding pre-computations) is $O(TKlog(K))$.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
 \frametitle{Asymptotic optimality of the index policy $\hat{\allp}$}
 Notations:
 \begin{itemize}
-\item For $\alphav\in \mathbb{R}^T$, and $c\in \mathbb{R}$, define $\lfloor\alphav K\rfloor=(\lfloor\alpha_1 K\rfloor,...,\lfloor\alpha_T,K\rfloor)$.
+\item For $\alphav\in \mathbb{R}^T$, and $c\in \mathbb{R}$, define $\lfloor\alphav c\rfloor=(\lfloor\alpha_1 c\rfloor,...,\lfloor\alpha_Tc\rfloor)$.
 \item Let $Z(\allp, \mv, K)$ denote the expected reward of the original MDP \eqref{prime}, with constraint $\mv=(m_1,...,m_T)$ and K sub-processes.
 \item Let $\allpset_{\mv,K}$ denote the set of all feasible Markov policies of the original MDP \eqref{prime}, with constraint $\mv=(m_1,...,m_T)$ and K sub-processes.
 \end{itemize}
@@ -404,7 +448,7 @@ Notations:
 \begin{itemize}
 \item Define $N_t(s)$ as the number of sub-processes in state $s$ at time $t$, and $M_t(s)$ the number of sub-processes taking active actions in state $s$ at time $t$, both under $\hat{\allp}$.
 \item Let $\pi^{*}$ be a policy constructed using $\rho^*$.
-\item Let $P_t(s)$ denote the probability of being in state $s$ at time $t$ under $\pi^*$.
+\item Let $P_t(s)$ denote the probability of a sub-process being in state $s$ at time $t$ under $\pi^*$.
 \end{itemize}
 \begin{theorem}[2]\label{th:conv}
 For every $s\in\substates$ and $1\leq t\leq T$,
@@ -422,8 +466,8 @@ and
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Theorem 2 is proven by induction over time}
-An numerical illustration of Theorem 2 using an instance of MAB
-\vspace{-0.5cm}
+An numerical illustration of Theorem 2 using an instance of MAB with $K=10000$
+\vspace{-0.3cm}
 \begin{figure}[tb]
 \captionsetup[subfigure]{labelformat=empty}
 \centering
@@ -431,11 +475,27 @@ An numerical illustration of Theorem 2 using an instance of MAB
 \only<1>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_s.pdf}}}
 \only<1>{\subfigure{\includegraphics[width=45mm]{heat_map_index_sa.pdf}}}
 \only<1>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_sa.pdf}}}
-\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_index_s_lined.pdf}}}
-\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_s_lined.pdf}}}
-\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_index_sa_lined.pdf}}}
-\only<2>{\subfigure{\includegraphics[width=45mm]{heat_map_pistar_sa_lined.pdf}}}
 \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Theorem 2 is proven by induction over time}
+Proof Intuition of Theorem 2 (Warning: lots of hand-waves):
+Assume Theorem 2 holds for time $t-1$.
+\begin{itemize}
+\item Proof of the first result holds at $t$:\\
+Same distribution of arms over state, same fraction of arms get to set active in each state $\Rightarrow$ same distribution of arms over state in the next time period.
+\item Proof of the second result holds at $t$:\\
+\begin{itemize}
+\item 1. $\{s\in \substates: \beta_t(s)>\lambda^*_t\}\approx \{s\in \substates: \pi^{*} \text{ chooses } a=1 \text{ in } s\}$.\\
+\hspace{0.05cm}2. $\pi^{*}$ chooses $a=1$ $\alpha_t$ of the time.
+\item $1 + 2\Rightarrow$ $\sum_{s\in \{s\in \substates: \beta_t(s)>\lambda^*_t\}}P_t(s)\approx\alpha_t$ \\
+$\Rightarrow$  $\sum_{s\in \{s\in \substates: \beta_t(s)>\lambda^*_t\}}\frac{N_t(s)}{K}\approx\alpha_t$ .
+\item The index policy $\hat{\pi}$ sets $\alpha_t K$ arms active, hence 
+\end{itemize}
+\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -457,13 +517,128 @@ On the other hand,
 \begin{align*}
 \lim_{K\rightarrow\infty}\frac{1}{K}Z(\hat{\allp},\lfloor \alpha K\rfloor,K) 
 =&\lim_{K\rightarrow\infty}\frac{1}{K}\Eb^{\hat{\allp}}\left[\sum_{t=1}^{T}\sum_{s\in\substates}r_t(s,1) M_{t}(s)+r_t(s,0) (N_{t}(s)-M_{t}(s))\right]\\
-=&\sum_{t=1}^{T}\sum_{s\in \substates}\left[r_t(s,1) \rho(s,1,t)+r_t(s,0) \rho(s,0,t) \right]\\
+=&\sum_{t=1}^{T}\sum_{s\in \substates}\left[r_t(s,1) \rho^*(s,1,t)+r_t(s,0) \rho^*(s,0,t) \right]\\
 &\;\;\;\;\;-\mathbb{E}^{\subp^*}\left[\sum_{t}\lambda^*_t \left(A_t-\alpha_t\right)\right]\\
 =& Q(\lambdav^*)+\alpha \sum\lambda^*_t\\
 =& \lim_{K\rightarrow\infty}\frac{1}{K}(KQ(\lambdav^*)+\lfloor \alpha K \rfloor\sum\lambda^*_t)\\
 =& \lim_{K\rightarrow\infty}\frac{1}{K} P(\lambdav^*,\lfloor \alpha K \rfloor, K)\\
 \geq& \lim_{K\rightarrow\infty}\frac{1}{K}\sup_{\allp\in\allpset_{\lfloor \alpha K\rfloor,K}}Z(\allp,\lfloor \alpha K\rfloor,K).
 \end{align*}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Numerical Experiments: Bernoulli MAB}
+$K$ arms, each returns a random reward of 0 or 1 when pulled. $T=6$, $\alpha_t=\frac{1}{3}$, for all $t$.\\
+The problem aims to maximize the total expected reward.
+\begin{center}
+\includegraphics[width=70mm]{plot_mab.pdf}
+\end{center}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Numerical Experiments: Subset Selection Problem}
+$K$ designs, $m$ parallel computing resources. $T=5$\\
+$\alpha_t = 0.5$ for $1\leq t\leq 4$. $\alpha_5=0.3$\\
+The problem aims to select the best $\bar{m}$ designs out of $K$.
+\begin{center}
+\includegraphics[width=70mm]{plot_hiring1.pdf}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Application 1: Multiple Selection with Standard}
+\begin{itemize}
+\item $k$ alternatives
+\item $m$ parallel simulating resources per time step
+\item $T$ time horizon
+\item $\theta_x$ is the underlying true performance of alternative $x$, $x\in\{1,...,k\}$
+\item $d_x$ the known threshold for alternative $x$
+\item $z_{n,x}$ is the number of simulation resources to use on alternative $x$ at time step $n$. This is our allocation decision. $\sum_x z_{n,x}\leq m$
+\item After time step $T$, for each alternative $x$, we decide whether $\theta_x>d_x$ based on the past results of simulation
+\item We obtain a reward $R = \sum_x R_x$. $R_x$ can be a 0-1 reward or linear reward.
+\end{itemize}
+{\Large \color{red} Goal:Find an allocation of simulation resources to best support the decision at time T}
+x\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Application 1: Multiple Selection with Standard}
+For each $k=2,4,8,16$
+\begin{itemize}
+\item $m = k$
+\item $d_x = 0.2, \forall x \in \{1,...,k\}$
+\item $\Sv_0=(\alphav_0,\betav_0)=(1,1)^k$
+%\item $\square$ -- Upper bound
+%\item --- 95\% confidence interval with index policy, based on 10000 replications
+%\item {\huge\textbf{--}}  95\% confidence interval with equal allocation policy, based on 50000 replications
+\end{itemize}
+\vspace{-1cm}
+\begin{center}
+\includegraphics[width=60mm]{simPlots_0707_cropped.pdf}
+\end{center}
+Conjecture: The index policy has asymptotic optimality as $m$ and $K$ goes to infinity at the same rate.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Application 2: Classification with Crowdsourcing}
+\begin{itemize}
+\item $k$ labeling tasks
+\item $U$ total workers
+\item M/M/k queue: workers come in with rate $r$, and complete their job with rate $\mu$.
+\item $\theta_x$ is the underlying likelihood for a task to have a positive label.
+\item $d_x$ the known threshold for alternative $x$
+\item After worker budget $U$ has been exhausted, for each alternative $x$, we decide whether the true label is positive or negative based on a 1-0 reward.
+\end{itemize}
+{\Large \color{red} Goal:Find an allocation of workers to best support the final decision on true labels}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Application 2: Classification with Crowdsourcing}
+Queue: $r=0.1$, $\mu=0.4$, $K = 10,100,1000$, $U = 1.2K$. \\
+We use a non-informative prior with $\alphav = \mathbf{1}$ and $\betav = \mathbf{1}$, and a threshold $d_x = 0.5$ for all the tasks. 
+\begin{center}
+\includegraphics[width=70mm]{plot_up_sim.pdf}
+\end{center}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Application 2: Classification with Crowdsourcing}
+We used dataset PASCAL RTE-1\cite{Snow2008}, which consists of 800 tasks, each comes with 10 labels obtained from crowdworkers and a gold standard label\\
+
+\begin{center}
+\includegraphics[width=75mm]{plot_real_sim_reward.pdf}
+\end{center}
+
+Conjecture: The index policy has asymptotic optimality as $U$ and $K$ goes to infinity at the same rate.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Conclusion}
+Index policies under different setting show asymptotically optimal behaviors while significantly reduce the computational complexity.
+
+Possible extension of the framework:
+\begin{itemize}
+\item To include infinite state space
+\item To allow a total budget over all time period
+\item To allow multiple actions
+\item To allow a more general weakly coupled dynamic program setting
+\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
